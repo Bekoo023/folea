@@ -38,7 +38,7 @@ export default function Gebruik() {
               <h2 className="display mb-5 text-[clamp(26px,3.4vw,48px)]">Hoeveel eigenlijk?</h2>
               <p className="max-w-[40ch] text-[15px] leading-relaxed opacity-75">
                 Er bestaat geen hoeveelheid die voor iedereen klopt. Dit is het startpunt waar de
-                meeste mensen op uitkomen pas het aan op wat je ziet.
+                meeste mensen op uitkomen. Pas het aan op wat je ziet.
               </p>
             </div>
             <div>

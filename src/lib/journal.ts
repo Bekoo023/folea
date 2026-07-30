@@ -13,5 +13,5 @@ export const QUOTES: [string, string][] = [
 
 export const TIMELINE: [string, string][] = [
   ["Nu", "De eerste formule is klaar: de Folea hair butter."],
-  ["Hierna", "De volgende producten in ontwikkeling één voor één, niet twaalf tegelijk."],
+  ["Hierna", "De volgende producten staan in ontwikkeling. Eén voor één, niet twaalf tegelijk."],
 ];

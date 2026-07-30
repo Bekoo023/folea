@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Navigate, useParams } from "react-router-dom";
 import { Photo } from "@/components/Photo";
+import { TiltPhoto } from "@/components/TiltPhoto";
 import { Reveal } from "@/components/Reveal";
 import { Button } from "@/components/Button";
 import { bySlug } from "@/lib/products";
@@ -28,8 +29,8 @@ export default function Product() {
             <div className="grid gap-3 sm:grid-cols-2">
               {product.images && product.images.length > 0 ? (
                 <>
-                  <Reveal variant="clip" className="overflow-hidden rounded-[24px] shadow-[0_24px_60px_-30px_rgba(16,14,12,0.35)] sm:col-span-2">
-                    <Photo src={product.images[0]} alt={product.name} ratio="5/4" />
+                  <Reveal variant="clip" className="sm:col-span-2">
+                    <TiltPhoto src={product.images[0]} alt={product.name} ratio="5/4" />
                   </Reveal>
                   {product.images.slice(1).map((src, i) => (
                     <Reveal
@@ -43,8 +44,8 @@ export default function Product() {
                 </>
               ) : (
                 <>
-                  <Reveal variant="clip" className="overflow-hidden rounded-[24px] shadow-[0_24px_60px_-30px_rgba(16,14,12,0.35)] sm:col-span-2">
-                    <Photo hue={product.hue} ratio="5/4" label={`Foto ${product.photos[0]}`} />
+                  <Reveal variant="clip" className="sm:col-span-2">
+                    <TiltPhoto hue={product.hue} ratio="5/4" label={`Foto ${product.photos[0]}`} />
                   </Reveal>
                   {product.photos.slice(1).map((shot, i) => (
                     <Reveal

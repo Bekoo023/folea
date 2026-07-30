@@ -27,7 +27,7 @@ export const PRODUCTS: Product[] = [
     hue: 34,
     // PLACEHOLDER: vervang door de werkelijke hoofdgrondstof van je formule
     latin: "Butyrospermum parkii",
-    desc: "Een rijke, voedende hair butter voor haar dat meer nodig heeft dan shampoo en conditioner alleen. Smelt in de hand tot een lichte olie en trekt in zonder vet aan te voelen voor glans en minder pluis, van wortel tot punt.",
+    desc: "Een rijke, voedende hair butter voor haar dat meer nodig heeft dan shampoo en conditioner alleen. Smelt in de hand tot een lichte olie en trekt in zonder vet aan te voelen. Voor glans en minder pluis, van wortel tot punt.",
     use: "Een kleine schep tussen de handen laten smelten en verdelen over handdoekdroog of droog haar. Focus op de lengtes en punten; bij de hoofdhuid is een dun laagje al genoeg.",
     // PLACEHOLDER: hier komt de echte INCI-lijst zodra de formule definitief is
     ing: "Volledige ingrediëntenlijst volgt zodra de formule definitief is.",

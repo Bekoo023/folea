@@ -1,4 +1,4 @@
-import { Photo } from "@/components/Photo";
+import { TiltPhoto } from "@/components/TiltPhoto";
 import { Reveal } from "@/components/Reveal";
 import { Marquee } from "@/components/Marquee";
 import { ButtonLink } from "@/components/Button";
@@ -37,17 +37,14 @@ export default function Verhaal() {
               <p className="mb-5">
                 Elke batch wordt met de hand gemengd, genummerd en gedateerd. Als een batch niet
                 klopt, gaat 'ie niet de deur uit. Dat betekent soms dat iets twee weken uitverkocht
-                is dat vinden we een beter probleem dan het alternatief.
+                is. Dat vinden we een beter probleem dan het alternatief.
               </p>
             </div>
 
             <div>
-              <Reveal
-                variant="clip"
-                className="overflow-hidden rounded-[24px] shadow-[0_30px_70px_-30px_rgba(16,14,12,0.4)]"
-              >
+              <Reveal variant="clip">
                 <div ref={fig}>
-                  <Photo src="/media/folea-ingredients.png" alt="Ingrediënten van Folea" ratio="4/5" />
+                  <TiltPhoto src="/media/folea-ingredients.png" alt="Ingrediënten van Folea" ratio="4/5" />
                 </div>
               </Reveal>
             </div>

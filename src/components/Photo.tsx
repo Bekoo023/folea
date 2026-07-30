@@ -1,4 +1,4 @@
-import type { CSSProperties } from "react";
+import { useState, type CSSProperties } from "react";
 
 interface Props {
   /** kleurtoon van de placeholder — hoort bij het product */
@@ -27,13 +27,18 @@ export function Photo({
   src,
   alt = "",
 }: Props) {
+  const [loaded, setLoaded] = useState(false);
+
   if (src) {
     return (
       <img
         src={src}
         alt={alt}
         loading="lazy"
-        className={`h-full w-full object-cover ${className}`}
+        onLoad={() => setLoaded(true)}
+        className={`h-full w-full object-cover transition-[opacity,transform] duration-700 ease-folea ${
+          loaded ? "opacity-100 scale-100" : "opacity-0 scale-[1.03]"
+        } ${className}`}
         style={{ aspectRatio: ratio }}
       />
     );

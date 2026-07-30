@@ -113,7 +113,7 @@ function Manifest() {
               <p className="m-0 mb-7 max-w-[46ch] text-[clamp(15px,1.1vw,17px)] leading-relaxed opacity-75">
                 Folea begon met een simpele vraag: waarom heeft haarverzorging twaalf stappen nodig
                 als de meeste ervan hetzelfde doen? Dus maakten we er één van. Eén pot, met precies
-                de werkstoffen die iets doen niks dat er alleen in zit om de textuur te verkopen.
+                de werkstoffen die iets doen. Niks dat er alleen in zit om de textuur te verkopen.
               </p>
             </Reveal>
             <Reveal delay={0.15}>
@@ -137,9 +137,9 @@ function Manifest() {
                 {FACTS.map(([no, text]) => (
                   <li
                     key={no}
-                    className="grid grid-cols-[auto_1fr] items-baseline gap-4 border-t border-ink/15 py-4 first:border-t-0"
+                    className="group grid grid-cols-[auto_1fr] items-baseline gap-4 border-t border-ink/15 py-4 transition-[padding] duration-300 ease-folea first:border-t-0 hover:pl-2"
                   >
-                    <span className="text-[11px] font-semibold tracking-[0.14em] opacity-50">
+                    <span className="text-[11px] font-semibold tracking-[0.14em] opacity-50 transition-opacity duration-300 ease-folea group-hover:opacity-90 group-hover:text-flush-deep">
                       {no}
                     </span>
                     <span className="text-[14.5px] leading-snug opacity-80">{text}</span>
@@ -147,6 +147,31 @@ function Manifest() {
                 ))}
               </ul>
             </div>
+          </Reveal>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function EditorialBreak() {
+  const ref = useRef<HTMLElement>(null);
+  const reduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const scale = useTransform(scrollYProgress, [0, 1], [1.15, reduceMotion ? 1.15 : 1]);
+
+  return (
+    <section ref={ref} className="relative h-[64svh] min-h-[380px] overflow-hidden bg-ink">
+      <motion.div className="absolute inset-0" style={{ scale }}>
+        <Photo src="/media/folea-lifestyle.png" alt="" ratio="21/9" />
+      </motion.div>
+      <div className="absolute inset-0 bg-ink/30" />
+      <div className="relative flex h-full items-end">
+        <div className="wrap w-full" style={{ paddingBottom: "clamp(30px,5vw,64px)" }}>
+          <Reveal variant="clip">
+            <p className="latin max-w-[20ch] text-[clamp(24px,3.4vw,42px)] leading-snug text-paper">
+              “Hoort gewoon bij je dag.”
+            </p>
           </Reveal>
         </div>
       </div>
@@ -171,9 +196,6 @@ function ProductShowcase() {
 
           <div>
             <Reveal>
-              <p className="eyebrow m-0 mb-5 opacity-50">Het product</p>
-            </Reveal>
-            <Reveal delay={0.05}>
               <h2 className="display mb-2 text-[clamp(30px,4.6vw,66px)]">
                 Eén pot.
                 <br />
@@ -211,6 +233,7 @@ export default function Home() {
     <>
       <Hero />
       <Manifest />
+      <EditorialBreak />
 
       <ProductShowcase />
 
@@ -283,21 +306,18 @@ export default function Home() {
       {/* papyrus */}
       <section className="section bg-papyrus text-ink">
         <div className="wrap">
-          <div className="mb-[clamp(34px,4vw,64px)] flex flex-wrap items-baseline gap-[clamp(20px,4vw,64px)]">
-            <span className="text-[11px] font-bold uppercase tracking-[0.2em] opacity-50">
-              Gelezen &amp; gehoord
-            </span>
-            <h2 className="display flex-1 basis-[320px] text-[clamp(30px,4.6vw,66px)]">
+          <div className="mb-[clamp(34px,4vw,64px)]">
+            <h2 className="display text-[clamp(30px,4.6vw,66px)]">
               Wat mensen
               <br />
               terugzeggen
             </h2>
           </div>
-          <div className="grid gap-[clamp(22px,3vw,44px)] md:grid-cols-3">
+          <div className="grid gap-[clamp(22px,3vw,44px)] md:grid-cols-2">
             {QUOTES.map(([text, who], i) => (
               <Reveal key={who} delay={i * 0.07}>
-                <blockquote className="m-0 border-t border-ink/25 pt-5">
-                  <p className="latin m-0 mb-4 text-[clamp(19px,1.9vw,26px)] leading-[1.32]">
+                <blockquote className="group m-0 border-t border-ink/25 pt-5 transition-[border-color] duration-500 ease-folea hover:border-ink/70">
+                  <p className="latin m-0 mb-4 text-[clamp(19px,1.9vw,26px)] leading-[1.32] transition-transform duration-500 ease-folea group-hover:translate-x-1">
                     “{text}”
                   </p>
                   <cite className="text-[11px] uppercase not-italic tracking-[0.18em] opacity-60">
