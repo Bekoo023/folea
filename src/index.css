@@ -1,0 +1,435 @@
+@import "tailwindcss";
+
+/* ============================================================
+   FOLEA — design tokens (Tailwind v4)
+   papyrus = hoofdkleur · flush = secundair · paper/ink = tertiair
+   ============================================================ */
+@theme {
+  --color-papyrus: #ded2b4;
+  --color-papyrus-deep: #c9ba97;
+  --color-papyrus-tint: #ece3cd;
+
+  --color-flush: #f2879c;
+  --color-flush-deep: #8e2e48;
+  --color-flush-tint: #fbd3db;
+
+  --color-paper: #fffdf8;
+  --color-ink: #100e0c;
+  --color-ink-soft: #3b352e;
+
+  --font-display: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-body: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-latin: "Newsreader", Georgia, "Times New Roman", serif;
+
+  --ease-folea: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+:root {
+  --nav-h: 64px;
+  --pad: clamp(18px, 4.2vw, 72px);
+  --maxw: 1560px;
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  html:focus-within {
+    scroll-behavior: smooth;
+  }
+  body {
+    margin: 0;
+    background: var(--color-papyrus);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.55;
+    font-variation-settings: "wdth" 100;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  img,
+  video {
+    display: block;
+    max-width: 100%;
+  }
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  button {
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: 0;
+    cursor: pointer;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-flush);
+    outline-offset: 3px;
+  }
+}
+
+/* ============================================================
+   TYPOGRAFIE
+   De omkering: brede uppercase grotesk als display,
+   cursieve serif alleen voor Latijnse namen en citaten.
+   ============================================================ */
+.display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-variation-settings: "wdth" 112, "wght" 700;
+  text-transform: uppercase;
+  line-height: 0.86;
+  letter-spacing: -0.025em;
+  margin: 0;
+}
+.latin {
+  font-family: var(--font-latin);
+  font-style: italic;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+}
+.eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-variation-settings: "wdth" 92;
+}
+.wordmark {
+  font-family: var(--font-display);
+  font-weight: 800;
+  text-transform: uppercase;
+  font-variation-settings: "wdth" 125, "wght" 800;
+  letter-spacing: 0.02em;
+  line-height: 0.74;
+  margin: 0;
+  font-size: clamp(76px, 17.5vw, 290px);
+  white-space: nowrap;
+  user-select: none;
+}
+
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+.section {
+  padding: clamp(72px, 9vw, 150px) var(--pad);
+  position: relative;
+}
+.wrap {
+  max-width: var(--maxw);
+  margin: 0 auto;
+}
+.page-head {
+  padding: calc(var(--nav-h) + clamp(56px, 10vw, 150px)) 0 clamp(40px, 6vw, 90px);
+}
+
+/* ============================================================
+   FOTO-PLACEHOLDER
+   Vervang <Photo> door <img> zodra de shoot binnen is.
+   ============================================================ */
+.ph {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: var(--r, 4/5);
+  background:
+    radial-gradient(70% 80% at 30% 22%, hsl(var(--h, 38) 34% 74%) 0%, transparent 62%),
+    radial-gradient(60% 70% at 78% 78%, hsl(calc(var(--h, 38) + 300) 52% 78%) 0%, transparent 60%),
+    linear-gradient(150deg, var(--color-papyrus-tint), var(--color-papyrus-deep));
+  isolation: isolate;
+}
+.ph::after {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.86' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.3;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+.ph--dark {
+  background: linear-gradient(150deg, #2b241c, #5a4736 55%, #1c1815);
+}
+.ph__tag {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  z-index: 2;
+  font-size: 9.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  background: rgb(16 14 12 / 0.72);
+  color: var(--color-papyrus);
+  padding: 5px 9px;
+  border-radius: 99px;
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero-fallback {
+  background:
+    radial-gradient(60% 70% at 22% 30%, #6e5c3f 0%, transparent 60%),
+    radial-gradient(50% 60% at 78% 66%, #a0546a 0%, transparent 62%),
+    linear-gradient(160deg, #241f18 0%, #4a3f2e 48%, #1a1613 100%);
+  animation: drift 26s var(--ease-folea) infinite alternate;
+}
+@keyframes drift {
+  from {
+    transform: scale(1.06) translate3d(0, 0, 0);
+  }
+  to {
+    transform: scale(1.16) translate3d(-2.5%, -1.5%, 0);
+  }
+}
+.hero-tint {
+  background:
+    linear-gradient(to bottom, rgb(16 14 12 / 0.52) 0%, rgb(16 14 12 / 0.06) 38%, rgb(16 14 12 / 0.78) 100%),
+    linear-gradient(200deg, rgb(222 210 180 / 0.2), rgb(242 135 156 / 0.14));
+}
+.scrollcue i {
+  display: block;
+  width: 1px;
+  height: 44px;
+  background: currentColor;
+  transform-origin: top;
+  animation: cue 2.4s var(--ease-folea) infinite;
+}
+@keyframes cue {
+  0% {
+    transform: scaleY(0);
+  }
+  42% {
+    transform: scaleY(1);
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+.navlink {
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 500;
+  position: relative;
+  padding: 4px 0;
+}
+.navlink::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: 0;
+  height: 1px;
+  background: currentColor;
+  transition: right 0.45s var(--ease-folea);
+}
+.navlink:hover::after,
+.navlink[aria-current="page"]::after {
+  right: 0;
+}
+
+/* ============================================================
+   KNOPPEN
+   ============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 26px;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 600;
+  transition:
+    background 0.35s var(--ease-folea),
+    color 0.35s var(--ease-folea),
+    border-color 0.35s var(--ease-folea),
+    transform 0.35s var(--ease-folea);
+}
+.btn:hover {
+  transform: translateY(-2px);
+}
+.btn--flush {
+  background: var(--color-flush);
+  border-color: var(--color-flush);
+  color: var(--color-ink);
+}
+.btn--flush:hover {
+  background: var(--color-ink);
+  border-color: var(--color-ink);
+  color: var(--color-paper);
+}
+.btn--ink {
+  background: var(--color-ink);
+  border-color: var(--color-ink);
+  color: var(--color-paper);
+}
+.btn--ink:hover {
+  background: var(--color-flush);
+  border-color: var(--color-flush);
+  color: var(--color-ink);
+}
+.btn:disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* ============================================================
+   PRODUCTRAIL
+   ============================================================ */
+.rail {
+  display: flex;
+  gap: clamp(14px, 1.6vw, 26px);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 0 var(--pad) 22px;
+  margin: 0 calc(var(--pad) * -1);
+  scrollbar-width: thin;
+  scrollbar-color: rgb(16 14 12 / 0.3) transparent;
+}
+.rail::-webkit-scrollbar {
+  height: 2px;
+}
+.rail::-webkit-scrollbar-thumb {
+  background: rgb(16 14 12 / 0.32);
+}
+.rail > * {
+  flex: 0 0 clamp(240px, 26vw, 340px);
+  scroll-snap-align: start;
+}
+
+/* ============================================================
+   RITUEEL — signature element
+   ============================================================ */
+.ritual-bigno {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-variation-settings: "wdth" 120, "wght" 800;
+  font-size: clamp(90px, 13vw, 210px);
+  line-height: 0.7;
+  color: var(--color-flush-tint);
+  -webkit-text-stroke: 1.5px var(--color-ink);
+}
+.step {
+  padding: clamp(40px, 8vh, 90px) 0;
+  border-top: 1px solid rgb(16 14 12 / 0.28);
+  transition: opacity 0.5s var(--ease-folea);
+}
+.step:first-child {
+  border-top: 0;
+}
+@media (min-width: 1024px) {
+  /* Dimmen o.b.v. actieve stap heeft alleen zin naast de gedeelde sticky foto */
+  .step {
+    opacity: 0.38;
+  }
+  .step[data-active="true"] {
+    opacity: 1;
+  }
+}
+
+/* ============================================================
+   MARQUEE
+   ============================================================ */
+.marquee-track {
+  display: flex;
+  gap: 18px;
+  width: max-content;
+  will-change: transform;
+}
+.marquee-label {
+  font-family: var(--font-display);
+  font-weight: 800;
+  text-transform: uppercase;
+  font-variation-settings: "wdth" 122, "wght" 800;
+  font-size: clamp(30px, 6vw, 92px);
+  color: var(--color-papyrus);
+  mix-blend-mode: difference;
+  letter-spacing: -0.02em;
+}
+
+/* ============================================================
+   ACCORDEON
+   ============================================================ */
+.acc summary {
+  padding: 18px 0;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.acc summary::-webkit-details-marker {
+  display: none;
+}
+.acc summary::after {
+  content: "+";
+  font-size: 18px;
+  font-weight: 400;
+}
+.acc details[open] summary::after {
+  content: "–";
+}
+
+/* ============================================================
+   FORMULIER
+   ============================================================ */
+.field {
+  flex: 1 1 220px;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid rgb(222 210 180 / 0.42);
+  color: var(--color-papyrus);
+  padding: 12px 2px;
+  font: inherit;
+  font-size: 15px;
+}
+.field::placeholder {
+  color: rgb(222 210 180 / 0.5);
+}
+.field:focus {
+  outline: none;
+  border-bottom-color: var(--color-flush);
+}
+.field--ink {
+  border-bottom: 1px solid rgb(16 14 12 / 0.3);
+  padding: 8px 2px;
+  color: var(--color-ink);
+  transition: border-color 0.3s var(--ease-folea);
+}
+.field--ink:focus-within {
+  border-bottom-color: var(--color-flush-deep);
+}
+.field--ink input[type="search"]::-webkit-search-cancel-button {
+  cursor: pointer;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+}
