@@ -36,9 +36,19 @@ function Hero() {
       <motion.div className="absolute inset-0" style={{ scale: mediaScale }}>
         {/* Zichtbaar zolang de merkfilm er nog niet is */}
         <div className="hero-fallback absolute inset-0" />
+        {/* De merkfilm is breedbeeld (2.33:1); op een smal telefoonscherm zou object-cover het
+            grootste deel van het beeld wegsnijden. Daarom hier een omgevingsvullende, vervaagde
+            laag onder de scherpe video, die zelf altijd volledig in beeld blijft (object-contain
+            op mobiel, object-cover vanaf tablet waar de verhoudingen dichter bij elkaar liggen). */}
+        <img
+          src="/media/hero-poster.jpg"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 h-full w-full scale-125 object-cover opacity-80 blur-2xl saturate-150 brightness-[0.55] md:hidden"
+        />
         {/* VERVANG: zet de merkfilm in /public/media/ (stil, loopend, ±12 sec) */}
         <video
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-contain md:object-cover"
           autoPlay
           muted
           loop
@@ -55,7 +65,7 @@ function Hero() {
       <motion.div
         className="relative flex h-full flex-col"
         style={{
-          padding: "calc(var(--nav-h) + 24px) var(--pad) 0",
+          padding: "calc(var(--nav-h) + 24px) var(--pad) clamp(72px, 13vw, 210px)",
           y: textY,
           opacity: textOpacity,
         }}

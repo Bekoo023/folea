@@ -77,41 +77,47 @@
    TYPOGRAFIE
    De omkering: brede uppercase grotesk als display,
    cursieve serif alleen voor Latijnse namen en citaten.
+   In @layer components zodat Tailwind-utilities (bv. mt-auto, mb-5)
+   die ernaast in className staan er altijd overheen kunnen tillen —
+   ongelaagde CSS wint anders altijd van gelaagde utilities, ongeacht
+   volgorde of specificiteit.
    ============================================================ */
-.display {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-variation-settings: "wdth" 112, "wght" 700;
-  text-transform: uppercase;
-  line-height: 0.86;
-  letter-spacing: -0.025em;
-  margin: 0;
-}
-.latin {
-  font-family: var(--font-latin);
-  font-style: italic;
-  font-weight: 400;
-  text-transform: none;
-  letter-spacing: 0;
-}
-.eyebrow {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  font-variation-settings: "wdth" 92;
-}
-.wordmark {
-  font-family: var(--font-display);
-  font-weight: 800;
-  text-transform: uppercase;
-  font-variation-settings: "wdth" 125, "wght" 800;
-  letter-spacing: 0.02em;
-  line-height: 0.74;
-  margin: 0;
-  font-size: clamp(76px, 17.5vw, 290px);
-  white-space: nowrap;
-  user-select: none;
+@layer components {
+  .display {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-variation-settings: "wdth" 112, "wght" 700;
+    text-transform: uppercase;
+    line-height: 0.86;
+    letter-spacing: -0.025em;
+    margin: 0;
+  }
+  .latin {
+    font-family: var(--font-latin);
+    font-style: italic;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+  .eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-variation-settings: "wdth" 92;
+  }
+  .wordmark {
+    font-family: var(--font-display);
+    font-weight: 800;
+    text-transform: uppercase;
+    font-variation-settings: "wdth" 125, "wght" 800;
+    letter-spacing: 0.02em;
+    line-height: 0.74;
+    margin: 0;
+    font-size: clamp(76px, 17.5vw, 290px);
+    white-space: nowrap;
+    user-select: none;
+  }
 }
 
 /* ============================================================
