@@ -71,7 +71,7 @@ function Hero() {
           <ButtonLink to={`/product/${PRODUCT.slug}`} variant="flush">
             Bestel {PRODUCT.name}
           </ButtonLink>
-          <ButtonLink to="/gebruik" variant="ghost">
+          <ButtonLink to="/gebruik" variant="ghost" className="backdrop-blur-sm bg-ink/15">
             Hoe te gebruiken
           </ButtonLink>
         </div>

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
 import { Button } from "./Button";
 import { PRODUCT } from "@/lib/products";
 
@@ -70,7 +71,22 @@ export function Footer() {
                 Inschrijven
               </Button>
             </div>
-            <p className="m-0 mt-3 min-h-[18px] text-[12px] opacity-60">{msg}</p>
+            <div className="relative m-0 mt-3 min-h-[18px] text-[12px] opacity-60">
+              <AnimatePresence mode="wait">
+                {msg && (
+                  <motion.p
+                    key={msg}
+                    className="m-0"
+                    initial={{ opacity: 0, y: 4 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.35, ease: [0.22, 0.61, 0.36, 1] }}
+                  >
+                    {msg}
+                  </motion.p>
+                )}
+              </AnimatePresence>
+            </div>
           </div>
 
           <div className="grid grid-cols-2 gap-6 sm:grid-cols-3">

@@ -78,7 +78,7 @@ export function CartDrawer() {
                       <div className="flex items-center gap-3">
                         <div className="inline-flex items-center overflow-hidden rounded-full border border-ink/30">
                           <button
-                            className="px-2.5 py-1.5 text-[13px]"
+                            className="px-2.5 py-1.5 text-[13px] transition-[background-color,transform] duration-150 ease-out hover:bg-ink/5 active:scale-95"
                             aria-label="Eén minder"
                             onClick={() => setQty(product.slug, qty - 1)}
                           >
@@ -88,7 +88,7 @@ export function CartDrawer() {
                             {qty}
                           </span>
                           <button
-                            className="px-2.5 py-1.5 text-[13px]"
+                            className="px-2.5 py-1.5 text-[13px] transition-[background-color,transform] duration-150 ease-out hover:bg-ink/5 active:scale-95"
                             aria-label="Eén meer"
                             onClick={() => setQty(product.slug, qty + 1)}
                           >
@@ -96,7 +96,7 @@ export function CartDrawer() {
                           </button>
                         </div>
                         <button
-                          className="text-[11px] uppercase tracking-[0.1em] underline opacity-55"
+                          className="text-[11px] uppercase tracking-[0.1em] underline opacity-55 transition-opacity duration-200 hover:opacity-90"
                           onClick={() => remove(product.slug)}
                         >
                           Verwijderen

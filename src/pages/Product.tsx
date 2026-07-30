@@ -129,22 +129,28 @@ export default function Product() {
               <div className="acc mt-8 border-t border-ink/20">
                 <details open className="border-b border-ink/20">
                   <summary>Zo gebruik je het</summary>
-                  <div className="max-w-[52ch] pb-5 text-[15px] leading-relaxed opacity-85">
-                    {product.use}
+                  <div className="acc-panel">
+                    <div className="max-w-[52ch] pb-5 text-[15px] leading-relaxed opacity-85">
+                      {product.use}
+                    </div>
                   </div>
                 </details>
                 <details className="border-b border-ink/20">
                   <summary>Volledige ingrediëntenlijst</summary>
-                  <div className="max-w-[52ch] pb-5 text-[15px] leading-relaxed opacity-85">
-                    {product.ing}
+                  <div className="acc-panel">
+                    <div className="max-w-[52ch] pb-5 text-[15px] leading-relaxed opacity-85">
+                      {product.ing}
+                    </div>
                   </div>
                 </details>
                 <details className="border-b border-ink/20">
                   <summary>Verzending &amp; retour</summary>
-                  <div className="max-w-[52ch] pb-5 text-[15px] leading-relaxed opacity-85">
-                    Verzending binnen Nederland en België duurt één werkdag. Niets voor jou? Stuur
-                    het binnen 30 dagen terug ook als de pot open is. Dat is het hele punt van
-                    proberen.
+                  <div className="acc-panel">
+                    <div className="max-w-[52ch] pb-5 text-[15px] leading-relaxed opacity-85">
+                      Verzending binnen Nederland en België duurt één werkdag. Niets voor jou? Stuur
+                      het binnen 30 dagen terug ook als de pot open is. Dat is het hele punt van
+                      proberen.
+                    </div>
                   </div>
                 </details>
               </div>
