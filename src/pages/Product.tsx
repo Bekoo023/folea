@@ -25,25 +25,33 @@ export default function Product() {
             className="grid gap-[clamp(26px,3vw,60px)] lg:grid-cols-[1.1fr_0.9fr] lg:items-start"
             style={{ paddingTop: "calc(var(--nav-h) + clamp(28px,4vw,60px))" }}
           >
-            <div className="grid gap-2.5 sm:grid-cols-2">
+            <div className="grid gap-3 sm:grid-cols-2">
               {product.images && product.images.length > 0 ? (
                 <>
-                  <Reveal variant="clip" className="sm:col-span-2">
+                  <Reveal variant="clip" className="overflow-hidden rounded-[24px] shadow-[0_24px_60px_-30px_rgba(16,14,12,0.35)] sm:col-span-2">
                     <Photo src={product.images[0]} alt={product.name} ratio="5/4" />
                   </Reveal>
                   {product.images.slice(1).map((src, i) => (
-                    <Reveal key={src} delay={i * 0.07}>
+                    <Reveal
+                      key={src}
+                      delay={i * 0.07}
+                      className="overflow-hidden rounded-[24px] shadow-[0_24px_60px_-30px_rgba(16,14,12,0.35)]"
+                    >
                       <Photo src={src} alt={product.name} ratio="1/1" />
                     </Reveal>
                   ))}
                 </>
               ) : (
                 <>
-                  <Reveal variant="clip" className="sm:col-span-2">
+                  <Reveal variant="clip" className="overflow-hidden rounded-[24px] shadow-[0_24px_60px_-30px_rgba(16,14,12,0.35)] sm:col-span-2">
                     <Photo hue={product.hue} ratio="5/4" label={`Foto ${product.photos[0]}`} />
                   </Reveal>
                   {product.photos.slice(1).map((shot, i) => (
-                    <Reveal key={shot} delay={i * 0.07}>
+                    <Reveal
+                      key={shot}
+                      delay={i * 0.07}
+                      className="overflow-hidden rounded-[24px] shadow-[0_24px_60px_-30px_rgba(16,14,12,0.35)]"
+                    >
                       <Photo hue={product.hue + 6} ratio="1/1" label={`Foto ${shot}`} />
                     </Reveal>
                   ))}
@@ -61,7 +69,7 @@ export default function Product() {
               <div className="flex flex-wrap items-center gap-3">
                 <div className="inline-flex items-center overflow-hidden rounded-full border border-ink/30">
                   <button
-                    className="px-4 py-3 text-[15px]"
+                    className="px-4 py-3 text-[15px] transition-[background-color,transform] duration-200 hover:bg-ink/5 active:scale-90"
                     aria-label="Eén minder"
                     onClick={() => setQty((q) => Math.max(1, q - 1))}
                   >
@@ -69,7 +77,7 @@ export default function Product() {
                   </button>
                   <span className="min-w-[34px] text-center font-semibold tabular-nums">{qty}</span>
                   <button
-                    className="px-4 py-3 text-[15px]"
+                    className="px-4 py-3 text-[15px] transition-[background-color,transform] duration-200 hover:bg-ink/5 active:scale-90"
                     aria-label="Eén meer"
                     onClick={() => setQty((q) => q + 1)}
                   >
@@ -81,9 +89,42 @@ export default function Product() {
                 </Button>
               </div>
 
-              <p className="mt-4 text-[12px] opacity-60">
-                Gratis verzending vanaf € 45 · voor 16:00 besteld, morgen in huis
-              </p>
+              <ul className="m-0 mt-6 grid list-none grid-cols-1 gap-3 p-0 border-t border-ink/15 pt-5 sm:grid-cols-3">
+                {[
+                  {
+                    text: "Gratis vanaf € 45",
+                    icon: (
+                      <path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z M7 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM18 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
+                    ),
+                  },
+                  {
+                    text: "30 dagen bedenktijd",
+                    icon: <path d="M4 12a8 8 0 1 0 3-6.3M4 4v4h4 M12 8v4l3 2" />,
+                  },
+                  {
+                    text: "Nooit getest op dieren",
+                    icon: <path d="M12 21s-7-4.35-7-10a4 4 0 0 1 7-2.65A4 4 0 0 1 19 11c0 5.65-7 10-7 10z" />,
+                  },
+                ].map((item) => (
+                  <li key={item.text} className="flex items-center gap-2.5 text-[12px] opacity-70">
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="shrink-0"
+                      aria-hidden="true"
+                    >
+                      {item.icon}
+                    </svg>
+                    {item.text}
+                  </li>
+                ))}
+              </ul>
 
               <div className="acc mt-8 border-t border-ink/20">
                 <details open className="border-b border-ink/20">

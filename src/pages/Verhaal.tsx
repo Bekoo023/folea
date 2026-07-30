@@ -1,5 +1,6 @@
 import { Photo } from "@/components/Photo";
 import { Reveal } from "@/components/Reveal";
+import { Marquee } from "@/components/Marquee";
 import { ButtonLink } from "@/components/Button";
 import { useParallax } from "@/hooks/useParallax";
 import { TIMELINE } from "@/lib/journal";
@@ -41,13 +42,26 @@ export default function Verhaal() {
             </div>
 
             <div>
-              <Reveal variant="clip">
+              <Reveal
+                variant="clip"
+                className="overflow-hidden rounded-[24px] shadow-[0_30px_70px_-30px_rgba(16,14,12,0.4)]"
+              >
                 <div ref={fig}>
                   <Photo src="/media/folea-ingredients.png" alt="Ingrediënten van Folea" ratio="4/5" />
                 </div>
               </Reveal>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="section bg-ink text-papyrus">
+        <div className="wrap">
+          <Reveal>
+            <p className="latin m-0 max-w-[26ch] text-[clamp(24px,3.4vw,42px)] leading-snug opacity-95">
+              “We maken liever één ding dat klopt, dan tien dingen die goed genoeg zijn.”
+            </p>
+          </Reveal>
         </div>
       </section>
 
@@ -62,11 +76,17 @@ export default function Verhaal() {
               <br />
               verwachten
             </h2>
+            <p className="max-w-[32ch] text-[15px] opacity-70">
+              Geen beloftes over honderd producten. Wel een duidelijke volgorde.
+            </p>
           </div>
           <div className="border-t border-ink/25">
             {TIMELINE.map(([when, text], i) => (
               <Reveal key={when} delay={i * 0.05}>
-                <div className="grid grid-cols-[80px_1fr] gap-5 border-b border-ink/15 py-5">
+                <div className="grid grid-cols-[40px_80px_1fr] items-baseline gap-5 border-b border-ink/15 py-5">
+                  <span className="text-[11px] font-semibold tracking-[0.14em] opacity-40">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
                   <span className="font-display text-[14px] font-extrabold tracking-[0.06em]">
                     {when}
                   </span>
@@ -86,6 +106,8 @@ export default function Verhaal() {
           <ButtonLink to="mailto:hallo@foleahair.nl">Neem contact op</ButtonLink>
         </div>
       </section>
+
+      <Marquee />
     </>
   );
 }

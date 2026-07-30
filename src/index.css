@@ -376,17 +376,23 @@
   letter-spacing: 0.16em;
   text-transform: uppercase;
   font-weight: 600;
+  transition: color 0.3s var(--ease-folea);
+}
+.acc summary:hover {
+  color: var(--color-flush-deep);
 }
 .acc summary::-webkit-details-marker {
   display: none;
 }
 .acc summary::after {
   content: "+";
+  display: inline-block;
   font-size: 18px;
   font-weight: 400;
+  transition: transform 0.35s var(--ease-folea);
 }
 .acc details[open] summary::after {
-  content: "–";
+  transform: rotate(45deg);
 }
 
 /* ============================================================
