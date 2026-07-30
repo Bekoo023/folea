@@ -16,7 +16,7 @@ export function Nav({ overHero }: { overHero: boolean }) {
   const { y, dir } = useScrollDirection();
   const [menu, setMenu] = useState(false);
 
-  const solid = !overHero || y > window.innerHeight * 0.78;
+  const solid = !overHero || y > window.innerHeight * 0.45;
   const hidden = dir === 1 && y > 320 && !menu;
 
   return (

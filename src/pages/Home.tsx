@@ -16,10 +16,15 @@ function Hero() {
   const reduceMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
 
-  const mediaScale = useTransform(scrollYProgress, [0, 1], [1, reduceMotion ? 1 : 1.22]);
-  const dimOpacity = useTransform(scrollYProgress, [0, 1], [0, reduceMotion ? 0 : 0.5]);
-  const textY = useTransform(scrollYProgress, [0, 1], [0, reduceMotion ? 0 : -70]);
-  const textOpacity = useTransform(scrollYProgress, [0, 0.55], [1, 0]);
+  // Subtiel houden: de statische .hero-tint doet al het meeste donker-werk.
+  // Te veel extra dimming/zoom hierbovenop laat de hero op een kort (mobiel)
+  // scherm binnen één swipe dichtslibben tot een bijna zwart vlak.
+  const mediaScale = useTransform(scrollYProgress, [0, 1], [1, reduceMotion ? 1 : 1.1]);
+  const dimOpacity = useTransform(scrollYProgress, [0, 1], [0, reduceMotion ? 0 : 0.18]);
+  const textY = useTransform(scrollYProgress, [0, 1], [0, reduceMotion ? 0 : -50]);
+  // Snel genoeg wegfaden zodat de tekst/knoppen niet nog half zichtbaar zijn
+  // tegen de tijd dat ze (in scherm-coördinaten) de vaste navigatiebalk bereiken.
+  const textOpacity = useTransform(scrollYProgress, [0, 0.28], [1, 0]);
   const wordmarkY = useTransform(scrollYProgress, [0, 1], [0, reduceMotion ? 0 : 50]);
   const wordmarkOpacity = useTransform(scrollYProgress, [0, 0.75], [0.95, 0]);
 
