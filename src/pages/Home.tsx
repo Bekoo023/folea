@@ -36,26 +36,20 @@ function Hero() {
       <motion.div className="absolute inset-0" style={{ scale: mediaScale }}>
         {/* Zichtbaar zolang de merkfilm er nog niet is */}
         <div className="hero-fallback absolute inset-0" />
-        {/* De merkfilm is breedbeeld (2.33:1); op een smal telefoonscherm zou object-cover het
-            grootste deel van het beeld wegsnijden. Daarom hier een omgevingsvullende, vervaagde
-            laag onder de scherpe video, die zelf altijd volledig in beeld blijft (object-contain
-            op mobiel, object-cover vanaf tablet waar de verhoudingen dichter bij elkaar liggen). */}
-        <img
-          src="/media/hero-poster.jpg"
-          alt=""
-          aria-hidden="true"
-          className="absolute inset-0 h-full w-full scale-125 object-cover opacity-80 blur-2xl saturate-150 brightness-[0.55] md:hidden"
-        />
-        {/* VERVANG: zet de merkfilm in /public/media/ (stil, loopend, ±12 sec) */}
+        {/* Twee bronnen: de brede film (2.33:1) past goed op laptop/desktop, maar sneed op
+            een telefoon veel weg. Vanaf 768px breed pakt de browser de brede versie, daaronder
+            de los gefilmde staande telefoon-versie — <source media=""> kiest dit één keer bij
+            het laden, geen extra JS nodig. */}
         <video
-          className="absolute inset-0 h-full w-full object-contain md:object-cover"
+          className="absolute inset-0 h-full w-full object-cover"
           autoPlay
           muted
           loop
           playsInline
           poster="/media/hero-poster.jpg"
         >
-          <source src="/media/folea-hero.mp4" type="video/mp4" />
+          <source src="/media/folea-hero.mp4" media="(min-width: 768px)" type="video/mp4" />
+          <source src="/media/folea-hero-mobile.mp4" type="video/mp4" />
         </video>
         <div className="hero-tint absolute inset-0" />
       </motion.div>
@@ -65,7 +59,7 @@ function Hero() {
       <motion.div
         className="relative flex h-full flex-col"
         style={{
-          padding: "calc(var(--nav-h) + 24px) var(--pad) clamp(72px, 13vw, 210px)",
+          padding: "calc(var(--nav-h) + 24px) var(--pad) clamp(425px, 64vw, 680px)",
           y: textY,
           opacity: textOpacity,
         }}
