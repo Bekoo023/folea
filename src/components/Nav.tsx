@@ -39,7 +39,7 @@ export function Nav({ overHero }: { overHero: boolean }) {
       </Link>
 
       <button
-        className="ml-auto text-[11px] font-semibold uppercase tracking-[0.16em] md:hidden"
+        className="-mr-3 ml-auto flex items-center px-3 py-4 text-[12px] font-semibold uppercase tracking-[0.16em] md:hidden"
         aria-expanded={menu}
         onClick={() => setMenu((m) => !m)}
       >
@@ -74,7 +74,7 @@ export function Nav({ overHero }: { overHero: boolean }) {
                 <NavLink
                   to={l.to}
                   onClick={() => setMenu(false)}
-                  className="navlink flex border-b border-ink/10 py-3.5 text-[15px]"
+                  className="navlink flex min-h-[56px] items-center border-b border-ink/10 py-4 text-[18px]"
                 >
                   {l.label}
                 </NavLink>
