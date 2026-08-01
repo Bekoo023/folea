@@ -5,7 +5,7 @@ import { Button } from "@/components/Button";
 // Puur een bezoekersdrempel, geen echte beveiliging (het wachtwoord staat
 // gewoon in de client-bundle) — verwijder dit component + de check in App.tsx
 // zodra de homepage is goedgekeurd.
-const PASSWORD = "ZOMER2026";
+const PASSWORD = "Hallo123";
 const STORAGE_KEY = "folea:home-unlocked";
 
 export function isHomeUnlocked() {
