@@ -293,11 +293,11 @@ export default function Home() {
             <div>
               {INGREDIENTS.map(([name, note, pct], i) => (
                 <Reveal key={name} delay={i * 0.05}>
-                  <div className="grid grid-cols-[auto_1fr_auto] items-baseline gap-[clamp(16px,3vw,40px)] border-t border-papyrus/25 py-5">
-                    <span className="text-[11px] font-semibold tracking-[0.14em] opacity-50">
+                  <div className="group grid grid-cols-[auto_1fr_auto] items-baseline gap-[clamp(16px,3vw,40px)] border-t border-papyrus/25 py-5 transition-[border-color] duration-500 ease-folea hover:border-papyrus/70">
+                    <span className="text-[11px] font-semibold tracking-[0.14em] opacity-50 transition-opacity duration-300 ease-folea group-hover:opacity-90 group-hover:text-flush">
                       {String(i + 1).padStart(2, "0")}
                     </span>
-                    <span className="latin text-[clamp(20px,2.4vw,32px)] leading-tight">
+                    <span className="latin text-[clamp(20px,2.4vw,32px)] leading-tight transition-transform duration-500 ease-folea group-hover:translate-x-1">
                       {name}
                       <b className="mt-1.5 block font-body text-[13px] font-medium not-italic tracking-[0.05em] opacity-60">
                         {note}

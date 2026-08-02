@@ -21,20 +21,6 @@ function isHomeRoute(pathname: string) {
   return !OTHER_ROUTES.some((re) => re.test(pathname));
 }
 
-// Tijdelijk, samen met het slot: alleen de homepage wordt gepresenteerd, dus
-// een klik op een link naar een andere pagina (Shop/Gebruik/Verhaal, CTA's,
-// footer-links, ...) doet gewoon niks. Blokkeert alleen interne route-links —
-// mailto/tel/http(s)-links en anchors (#...) blijven gewoon werken.
-function blockOtherPageLinks(e: React.MouseEvent) {
-  const anchor = (e.target as HTMLElement).closest("a");
-  if (!anchor) return;
-  const href = anchor.getAttribute("href");
-  if (!href || href === "/" || href.startsWith("#")) return;
-  if (/^([a-z]+:|\/\/)/i.test(href)) return; // mailto:, tel:, http(s):, //cdn...
-  e.preventDefault();
-  e.stopPropagation();
-}
-
 export default function App() {
   useScrollTop();
   const { pathname } = useLocation();
@@ -45,7 +31,7 @@ export default function App() {
   }
 
   return (
-    <div onClickCapture={blockOtherPageLinks}>
+    <>
       <ScrollProgress />
       <Nav overHero={pathname === "/"} />
       <main>
@@ -61,6 +47,6 @@ export default function App() {
       <Footer />
       <CartDrawer />
       <Toast />
-    </div>
+    </>
   );
 }

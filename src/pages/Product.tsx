@@ -38,7 +38,12 @@ export default function Product() {
                       delay={i * 0.07}
                       className="overflow-hidden rounded-[24px] shadow-[0_24px_60px_-30px_rgba(16,14,12,0.35)]"
                     >
-                      <Photo src={src} alt={product.name} ratio="1/1" />
+                      <Photo
+                        src={src}
+                        alt={product.name}
+                        ratio="1/1"
+                        className="transition-transform duration-500 ease-folea hover:scale-[1.05]"
+                      />
                     </Reveal>
                   ))}
                 </>
@@ -61,100 +66,113 @@ export default function Product() {
             </div>
 
             <div className="lg:sticky lg:self-start" style={{ top: "calc(var(--nav-h) + 30px)" }}>
-              <p className="eyebrow m-0 opacity-50">{product.role}</p>
-              <h1 className="display mb-1 mt-3 text-[clamp(30px,4.2vw,60px)]">{product.name}</h1>
-              <p className="latin m-0 mt-1.5 text-[19px] opacity-70">{product.latin}</p>
-              <p className="mt-4 text-[20px] font-semibold tabular-nums">{euro(product.price)}</p>
-              <p className="my-5 max-w-[42ch] leading-relaxed opacity-85">{product.desc}</p>
+              <Reveal>
+                <p className="eyebrow m-0 opacity-50">{product.role}</p>
+                <h1 className="display mb-1 mt-3 text-[clamp(30px,4.2vw,60px)]">{product.name}</h1>
+                <p className="latin m-0 mt-1.5 text-[19px] opacity-70">{product.latin}</p>
+              </Reveal>
+              <Reveal delay={0.08}>
+                <p className="mt-4 text-[20px] font-semibold tabular-nums">{euro(product.price)}</p>
+                <p className="my-5 max-w-[42ch] leading-relaxed opacity-85">{product.desc}</p>
+              </Reveal>
 
-              <div className="flex flex-wrap items-center gap-3">
-                <div className="inline-flex items-center overflow-hidden rounded-full border border-ink/30">
-                  <button
-                    className="px-4 py-3 text-[15px] transition-[background-color,transform] duration-200 hover:bg-ink/5 active:scale-90"
-                    aria-label="Eén minder"
-                    onClick={() => setQty((q) => Math.max(1, q - 1))}
-                  >
-                    –
-                  </button>
-                  <span className="min-w-[34px] text-center font-semibold tabular-nums">{qty}</span>
-                  <button
-                    className="px-4 py-3 text-[15px] transition-[background-color,transform] duration-200 hover:bg-ink/5 active:scale-90"
-                    aria-label="Eén meer"
-                    onClick={() => setQty((q) => q + 1)}
-                  >
-                    +
-                  </button>
-                </div>
-                <Button variant="ink" onClick={() => add(product.slug, qty)}>
-                  In de tas
-                </Button>
-              </div>
-
-              <ul className="m-0 mt-6 grid list-none grid-cols-1 gap-3 p-0 border-t border-ink/15 pt-5 sm:grid-cols-3">
-                {[
-                  {
-                    text: "Gratis vanaf € 45",
-                    icon: (
-                      <path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z M7 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM18 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
-                    ),
-                  },
-                  {
-                    text: "30 dagen bedenktijd",
-                    icon: <path d="M4 12a8 8 0 1 0 3-6.3M4 4v4h4 M12 8v4l3 2" />,
-                  },
-                  {
-                    text: "Nooit getest op dieren",
-                    icon: <path d="M12 21s-7-4.35-7-10a4 4 0 0 1 7-2.65A4 4 0 0 1 19 11c0 5.65-7 10-7 10z" />,
-                  },
-                ].map((item) => (
-                  <li key={item.text} className="flex items-center gap-2.5 text-[12px] opacity-70">
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="shrink-0"
-                      aria-hidden="true"
+              <Reveal delay={0.14}>
+                <div className="flex flex-wrap items-center gap-3">
+                  <div className="inline-flex items-center overflow-hidden rounded-full border border-ink/30">
+                    <button
+                      className="px-4 py-3 text-[15px] transition-[background-color,transform] duration-200 hover:bg-ink/5 active:scale-90"
+                      aria-label="Eén minder"
+                      onClick={() => setQty((q) => Math.max(1, q - 1))}
                     >
-                      {item.icon}
-                    </svg>
-                    {item.text}
-                  </li>
-                ))}
-              </ul>
+                      –
+                    </button>
+                    <span className="min-w-[34px] text-center font-semibold tabular-nums">{qty}</span>
+                    <button
+                      className="px-4 py-3 text-[15px] transition-[background-color,transform] duration-200 hover:bg-ink/5 active:scale-90"
+                      aria-label="Eén meer"
+                      onClick={() => setQty((q) => q + 1)}
+                    >
+                      +
+                    </button>
+                  </div>
+                  <Button variant="ink" onClick={() => add(product.slug, qty)}>
+                    In de tas
+                  </Button>
+                </div>
+              </Reveal>
 
-              <div className="acc mt-8 border-t border-ink/20">
-                <details open className="border-b border-ink/20">
-                  <summary>Zo gebruik je het</summary>
-                  <div className="acc-panel">
-                    <div className="max-w-[52ch] pb-5 text-[15px] leading-relaxed opacity-85">
-                      {product.use}
+              <Reveal delay={0.2}>
+                <ul className="m-0 mt-6 grid list-none grid-cols-1 gap-3 p-0 border-t border-ink/15 pt-5 sm:grid-cols-3">
+                  {[
+                    {
+                      text: "Gratis vanaf € 45",
+                      icon: (
+                        <path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z M7 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM18 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
+                      ),
+                    },
+                    {
+                      text: "30 dagen bedenktijd",
+                      icon: <path d="M4 12a8 8 0 1 0 3-6.3M4 4v4h4 M12 8v4l3 2" />,
+                    },
+                    {
+                      text: "Nooit getest op dieren",
+                      icon: <path d="M12 21s-7-4.35-7-10a4 4 0 0 1 7-2.65A4 4 0 0 1 19 11c0 5.65-7 10-7 10z" />,
+                    },
+                  ].map((item) => (
+                    <li
+                      key={item.text}
+                      className="group flex items-center gap-2.5 text-[12px] opacity-70 transition-opacity duration-300 ease-folea hover:opacity-100"
+                    >
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="shrink-0 transition-colors duration-300 ease-folea group-hover:text-flush-deep"
+                        aria-hidden="true"
+                      >
+                        {item.icon}
+                      </svg>
+                      {item.text}
+                    </li>
+                  ))}
+                </ul>
+              </Reveal>
+
+              <Reveal delay={0.25}>
+                <div className="acc mt-8 border-t border-ink/20">
+                  <details open className="border-b border-ink/20">
+                    <summary>Zo gebruik je het</summary>
+                    <div className="acc-panel">
+                      <div className="max-w-[52ch] pb-5 text-[15px] leading-relaxed opacity-85">
+                        {product.use}
+                      </div>
                     </div>
-                  </div>
-                </details>
-                <details className="border-b border-ink/20">
-                  <summary>Volledige ingrediëntenlijst</summary>
-                  <div className="acc-panel">
-                    <div className="max-w-[52ch] pb-5 text-[15px] leading-relaxed opacity-85">
-                      {product.ing}
+                  </details>
+                  <details className="border-b border-ink/20">
+                    <summary>Volledige ingrediëntenlijst</summary>
+                    <div className="acc-panel">
+                      <div className="max-w-[52ch] pb-5 text-[15px] leading-relaxed opacity-85">
+                        {product.ing}
+                      </div>
                     </div>
-                  </div>
-                </details>
-                <details className="border-b border-ink/20">
-                  <summary>Verzending &amp; retour</summary>
-                  <div className="acc-panel">
-                    <div className="max-w-[52ch] pb-5 text-[15px] leading-relaxed opacity-85">
-                      Verzending binnen Nederland en België duurt één werkdag. Niets voor jou? Stuur
-                      het binnen 30 dagen terug ook als de pot open is. Dat is het hele punt van
-                      proberen.
+                  </details>
+                  <details className="border-b border-ink/20">
+                    <summary>Verzending &amp; retour</summary>
+                    <div className="acc-panel">
+                      <div className="max-w-[52ch] pb-5 text-[15px] leading-relaxed opacity-85">
+                        Verzending binnen Nederland en België duurt één werkdag. Niets voor jou?
+                        Stuur het binnen 30 dagen terug ook als de pot open is. Dat is het hele
+                        punt van proberen.
+                      </div>
                     </div>
-                  </div>
-                </details>
-              </div>
+                  </details>
+                </div>
+              </Reveal>
             </div>
           </div>
         </div>
