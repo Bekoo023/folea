@@ -1,6 +1,5 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import Stripe from "stripe";
-import { PRODUCTS } from "../src/lib/products";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
 
@@ -8,6 +7,15 @@ interface Line {
   slug: string;
   qty: number;
 }
+
+// Bewust geen import van src/lib/products.ts: Vercel bundelt Node-functies in
+// api/ niet betrouwbaar mee met relatieve imports van buiten die map — dat gaf
+// in productie een ERR_MODULE_NOT_FOUND crash op elke checkout-poging. Dit is
+// de bron van waarheid voor het bedrag dat echt in rekening wordt gebracht,
+// dus hou 'm in sync met PRODUCTS in src/lib/products.ts.
+const PRODUCTS = [
+  { slug: "folea", name: "Folea", role: "Voedende hair butter · 200 g", price: 100 },
+];
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== "POST") {
