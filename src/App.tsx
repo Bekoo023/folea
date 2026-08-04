@@ -41,7 +41,7 @@ export default function App() {
           <Route path="/gebruik" element={<Gebruik />} />
           <Route path="/verhaal" element={<Verhaal />} />
           <Route path="/bedankt" element={<Bedankt />} />
-          <Route path="*" element={<Home />} />
+          <Route path="*" element={<Home />} /> 
         </Routes>
       </main>
       <Footer />
