@@ -23,7 +23,8 @@ export const PRODUCTS: Product[] = [
     name: "Folea",
     // PLACEHOLDER: pas gewicht/prijs aan zodra je dat weet
     role: "Voedende hair butter · 200 g",
-    price: 3600,
+    // TIJDELIJK op €1 voor het testen van de live Stripe-koppeling — terugzetten naar 3600 (€36,00)!
+    price: 100,
     hue: 34,
     // PLACEHOLDER: vervang door de werkelijke hoofdgrondstof van je formule
     latin: "Butyrospermum parkii",
