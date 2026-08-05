@@ -1,10 +1,16 @@
 import { UsageSteps } from "@/components/UsageSteps";
 import { Reveal } from "@/components/Reveal";
 import { ButtonLink } from "@/components/Button";
+import { useMeta } from "@/hooks/useMeta";
 import { HAIRTYPE_ADVICE } from "@/lib/usage";
 import { PRODUCT } from "@/lib/products";
 
 export default function Gebruik() {
+  useMeta({
+    title: "Hoe te gebruiken",
+    description: `Drie momenten, één pot: hoe je ${PRODUCT.name} gebruikt voor elk haartype.`,
+  });
+
   return (
     <>
       <section className="section bg-papyrus text-ink" style={{ paddingTop: 0 }}>

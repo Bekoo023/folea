@@ -15,7 +15,7 @@ export const MOMENTS: UsageMoment[] = [
     body: "Een kleine schep laten smelten tussen de handen en verdelen over de lengtes. De basis voor elke wasbeurt.",
     meta: ["30 sec", "Elke wasbeurt"],
     hue: 34,
-    image: "/media/folea-lifestyle.png",
+    image: "/media/folea-lifestyle.webp",
   },
   {
     no: "02",
@@ -23,7 +23,7 @@ export const MOMENTS: UsageMoment[] = [
     body: "Een dun laagje beschermt tegen hitte en houdt pluis onder controle, zonder het haar plat te maken.",
     meta: ["30 sec", "Bij het föhnen"],
     hue: 30,
-    image: "/media/folea-product-white.png",
+    image: "/media/folea-product-white.webp",
   },
   {
     no: "03",
@@ -31,7 +31,7 @@ export const MOMENTS: UsageMoment[] = [
     body: "Op droog haar smeedt een klein beetje de punten weer aan elkaar tegen het slapen gaan.",
     meta: ["10 sec", "Naar wens"],
     hue: 26,
-    image: "/media/folea-product-pink.png",
+    image: "/media/folea-product-pink.webp",
   },
 ];
 

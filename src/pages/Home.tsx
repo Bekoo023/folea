@@ -10,6 +10,7 @@ import { PRODUCT } from "@/lib/products";
 import { euro } from "@/lib/format";
 import { useCart } from "@/lib/cart";
 import { INGREDIENTS, QUOTES } from "@/lib/journal";
+import { useMeta } from "@/hooks/useMeta";
 
 function Hero() {
   const ref = useRef<HTMLElement>(null);
@@ -172,7 +173,7 @@ function EditorialBreak() {
   return (
     <section ref={ref} className="relative h-[64svh] min-h-[380px] overflow-hidden bg-ink">
       <motion.div className="absolute inset-0" style={{ scale }}>
-        <Photo src="/media/folea-lifestyle.png" alt="" ratio="21/9" />
+        <Photo src="/media/folea-lifestyle.webp" alt="" ratio="21/9" />
       </motion.div>
       <div className="absolute inset-0 bg-ink/30" />
       <div className="relative flex h-full items-end">
@@ -238,6 +239,12 @@ function ProductShowcase() {
 }
 
 export default function Home() {
+  useMeta({
+    title: "Voedende hair butter",
+    description:
+      "Folea maakt één voedende hair butter voor haar dat dagelijks wordt gedragen. Rijk, plantaardig, nooit getest op dieren.",
+  });
+
   return (
     <>
       <Hero />

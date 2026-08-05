@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://folea-test.vercel.app/sitemap.xml

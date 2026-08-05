@@ -14,7 +14,7 @@ interface Line {
 // de bron van waarheid voor het bedrag dat echt in rekening wordt gebracht,
 // dus hou 'm in sync met PRODUCTS in src/lib/products.ts.
 const PRODUCTS = [
-  { slug: "folea", name: "Folea", role: "Voedende hair butter · 200 g", price: 100 },
+  { slug: "folea", name: "Folea", role: "Voedende hair butter · 200 g", price: 3600 },
 ];
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
@@ -66,11 +66,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       shipping_options: [
         {
           shipping_rate_data: {
-            // TIJDELIJK "true ||" ervoor om altijd gratis te testen — verwijder
-            // dat weer na het testen om de normale drempel te herstellen.
-            display_name: true || subtotal >= 4500 ? "Gratis verzending" : "Verzending",
+            display_name: subtotal >= 4500 ? "Gratis verzending" : "Verzending",
             type: "fixed_amount",
-            fixed_amount: { amount: true || subtotal >= 4500 ? 0 : 495, currency: "eur" },
+            fixed_amount: { amount: subtotal >= 4500 ? 0 : 495, currency: "eur" },
             delivery_estimate: {
               minimum: { unit: "business_day", value: 1 },
               maximum: { unit: "business_day", value: 2 },

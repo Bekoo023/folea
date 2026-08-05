@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { Button } from "./Button";
 import { PRODUCT } from "@/lib/products";
+import { COMPANY } from "@/lib/company";
 
 const COLUMNS: { title: string; links: [string, string][] }[] = [
   {
@@ -22,8 +23,8 @@ const COLUMNS: { title: string; links: [string, string][] }[] = [
   {
     title: "Hulp",
     links: [
-      ["Verzending & retour", `/product/${PRODUCT.slug}`],
-      ["Contact", "mailto:hallo@foleahair.nl"],
+      ["Verzending & retour", "/voorwaarden"],
+      ["Contact", `mailto:${COMPANY.email}`],
     ],
   },
 ];
@@ -129,9 +130,18 @@ export function Footer() {
         </div>
 
         <div className="flex flex-wrap justify-between gap-4 py-5 pb-6 text-[11px] uppercase tracking-[0.1em] opacity-50">
-          <span>© 2026 Folea</span>
-          <span>KVK 00000000 · BTW NL000000000B01</span>
-          <span>Privacy · Voorwaarden</span>
+          <span>© 2026 {COMPANY.name}</span>
+          <span>
+            KVK {COMPANY.kvk} · BTW {COMPANY.btw}
+          </span>
+          <span className="flex gap-3">
+            <Link to="/privacybeleid" className="transition-opacity hover:opacity-100">
+              Privacy
+            </Link>
+            <Link to="/voorwaarden" className="transition-opacity hover:opacity-100">
+              Voorwaarden
+            </Link>
+          </span>
         </div>
       </div>
     </footer>

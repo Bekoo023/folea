@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { ButtonLink } from "@/components/Button";
+import { useMeta } from "@/hooks/useMeta";
 import { PRODUCT } from "@/lib/products";
 
 const item = {
@@ -10,6 +11,7 @@ const item = {
 
 /** Stripe stuurt de klant hierheen na een geslaagde betaling. */
 export default function Bedankt() {
+  useMeta({ title: "Bestelling geplaatst", noindex: true });
   useEffect(() => {
     localStorage.removeItem("folea.cart.v1");
   }, []);

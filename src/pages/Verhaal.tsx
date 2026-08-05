@@ -3,11 +3,18 @@ import { Reveal } from "@/components/Reveal";
 import { Marquee } from "@/components/Marquee";
 import { ButtonLink } from "@/components/Button";
 import { useParallax } from "@/hooks/useParallax";
+import { useMeta } from "@/hooks/useMeta";
 import { TIMELINE } from "@/lib/journal";
 import { PRODUCT } from "@/lib/products";
+import { COMPANY } from "@/lib/company";
 
 export default function Verhaal() {
   const fig = useParallax<HTMLDivElement>(0.05);
+  useMeta({
+    title: "Ons verhaal",
+    description:
+      "Waarom Folea maar één product maakt in plaats van twaalf: het verhaal achter de hair butter.",
+  });
 
   return (
     <>
@@ -54,7 +61,7 @@ export default function Verhaal() {
             <div>
               <Reveal variant="clip">
                 <div ref={fig}>
-                  <TiltPhoto src="/media/folea-ingredients.png" alt="Ingrediënten van Folea" ratio="4/5" />
+                  <TiltPhoto src="/media/folea-ingredients.webp" alt="Ingrediënten van Folea" ratio="4/5" />
                 </div>
               </Reveal>
             </div>
@@ -117,7 +124,7 @@ export default function Verhaal() {
             </h2>
           </Reveal>
           <Reveal delay={0.08}>
-            <ButtonLink to="mailto:hallo@foleahair.nl">Neem contact op</ButtonLink>
+            <ButtonLink to={`mailto:${COMPANY.email}`}>Neem contact op</ButtonLink>
           </Reveal>
         </div>
       </section>

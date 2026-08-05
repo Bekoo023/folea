@@ -11,8 +11,10 @@ export interface Product {
   ing: string;
   /** shotlist: wat er op elke plek gefotografeerd moet worden */
   photos: string[];
-  /** echte productfoto's zodra ze er zijn — bestandspaden in /public/media, vervangt de shotlist-placeholder */
-  images?: string[];
+  /** echte productfoto's zodra ze er zijn — bestandspaden in /public/media, vervangt de shotlist-placeholder.
+   * Elke foto heeft een eigen beschrijvende alt-tekst (belangrijk voor screenreaders én Google Afbeeldingen —
+   * "Folea" alleen zegt niks over wat er te zien is). */
+  images?: { src: string; alt: string }[];
   /** uitgelichte foto voor de homepage-showcase (los van de productpagina-galerij) */
   heroImage?: string;
 }
@@ -23,8 +25,7 @@ export const PRODUCTS: Product[] = [
     name: "Folea",
     // PLACEHOLDER: pas gewicht/prijs aan zodra je dat weet
     role: "Voedende hair butter · 200 g",
-    // TIJDELIJK op €1 voor het testen van de live Stripe-koppeling — terugzetten naar 3600 (€36,00)!
-    price: 100,
+    price: 3600,
     hue: 34,
     // PLACEHOLDER: vervang door de werkelijke hoofdgrondstof van je formule
     latin: "Butyrospermum parkii",
@@ -37,8 +38,17 @@ export const PRODUCTS: Product[] = [
       "textuur op de vingers, macro",
       "aangebracht op de lengtes, model van opzij",
     ],
-    images: ["/media/folea-product-white.png", "/media/folea-lifestyle.png"],
-    heroImage: "/media/folea-product-pink.png",
+    images: [
+      {
+        src: "/media/folea-product-white.webp",
+        alt: "Pot Folea hair butter met het deksel eraf, tegen een lichte achtergrond",
+      },
+      {
+        src: "/media/folea-lifestyle.webp",
+        alt: "Pot Folea hair butter op een badkamerplank tussen verzorgingsproducten",
+      },
+    ],
+    heroImage: "/media/folea-product-pink.webp",
   },
 ];
 

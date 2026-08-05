@@ -4,10 +4,10 @@ import { useScrollDirection } from "@/hooks/useScrollDirection";
 
 const SLOT_COUNT = 16;
 const IMAGES = [
-  "/media/folea-product-pink.png",
-  "/media/folea-product-white.png",
-  "/media/folea-lifestyle.png",
-  "/media/folea-ingredients.png",
+  "/media/folea-product-pink.webp",
+  "/media/folea-product-white.webp",
+  "/media/folea-lifestyle.webp",
+  "/media/folea-ingredients.webp",
 ];
 
 /** Doorlopende band foto's die van richting wisselt met je scrollrichting. */

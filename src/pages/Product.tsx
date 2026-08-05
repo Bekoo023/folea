@@ -7,6 +7,7 @@ import { Button } from "@/components/Button";
 import { bySlug } from "@/lib/products";
 import { euro } from "@/lib/format";
 import { useCart } from "@/lib/cart";
+import { useMeta } from "@/hooks/useMeta";
 
 export default function Product() {
   const { slug } = useParams();
@@ -15,11 +16,36 @@ export default function Product() {
   const [qty, setQty] = useState(1);
 
   useEffect(() => setQty(1), [slug]);
+  useMeta({
+    title: product ? `${product.name} — ${product.role}` : "Product niet gevonden",
+    description: product?.desc,
+    image: product?.heroImage ?? product?.images?.[0]?.src,
+  });
 
   if (!product) return <Navigate to="/" replace />;
 
+  const productSchema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.name,
+    description: product.desc,
+    image: product.heroImage ?? product.images?.[0]?.src,
+    offers: {
+      "@type": "Offer",
+      priceCurrency: "EUR",
+      price: (product.price / 100).toFixed(2),
+      availability: "https://schema.org/InStock",
+      url: typeof window !== "undefined" ? window.location.href : undefined,
+    },
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+      />
       <section className="section bg-papyrus text-ink" style={{ paddingTop: 0 }}>
         <div className="wrap">
           <div
@@ -30,17 +56,17 @@ export default function Product() {
               {product.images && product.images.length > 0 ? (
                 <>
                   <Reveal variant="clip" className="sm:col-span-2">
-                    <TiltPhoto src={product.images[0]} alt={product.name} ratio="5/4" />
+                    <TiltPhoto src={product.images[0].src} alt={product.images[0].alt} ratio="5/4" />
                   </Reveal>
-                  {product.images.slice(1).map((src, i) => (
+                  {product.images.slice(1).map((img, i) => (
                     <Reveal
-                      key={src}
+                      key={img.src}
                       delay={i * 0.07}
                       className="overflow-hidden rounded-[24px] shadow-[0_24px_60px_-30px_rgba(16,14,12,0.35)]"
                     >
                       <Photo
-                        src={src}
-                        alt={product.name}
+                        src={img.src}
+                        alt={img.alt}
                         ratio="1/1"
                         className="transition-transform duration-500 ease-folea hover:scale-[1.05]"
                       />
